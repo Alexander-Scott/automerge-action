@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: automerge
-        uses: "pascalgn/automerge-action@12f21da8e4282e5e95522fcd14374e78a7a24794"
+        uses: "pascalgn/automerge-action@43fd7e11ee532218966343a262f10771b5eff978"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 ```
@@ -90,6 +90,11 @@ The following environment variables are supported:
   (rebase all commits of the branch onto the base branch)
   or [`squash`](https://help.github.com/en/articles/about-pull-request-merges#squash-and-merge-your-pull-request-commits)
   (squash all commits into a single commit). The default option is `merge`.
+- `MERGE_FORKS`: Specify whether merging from external repositories is enabled
+  or not. By default, pull requests with branches from forked repositories will
+  be merged the same way as pull requests with branches from the main
+  repository. Set this option to `false` to disable merging of pull requests
+  from forked repositories.
 - `TOKEN`: In some cases it can be useful to run this action as a certain user
   (by default, it will run as `github-actions`). This can be useful if you want
   to use the _Restrict who can push to matching branches_ option in the branch
@@ -112,6 +117,7 @@ You can configure the environment variables in the workflow file like this:
           AUTOMERGE: "ready-to-merge"
           AUTOREBASE: "ready-to-rebase-and-merge"
           MERGE_METHOD: "squash"
+          MERGE_FORKS: "false"
 ```
 
 ## License
